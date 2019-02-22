@@ -174,7 +174,7 @@ class Scorimmo extends ScorimmoConfig
     private function client()
     {
         if (empty($this->client)) {
-            return new Client();
+            $this->client = new Client();
         }
 
         return $this->client;
