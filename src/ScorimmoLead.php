@@ -14,6 +14,22 @@ class ScorimmoLead
     /**
      * @var string
      */
+    private $city;
+
+    /**
+     * string
+     * @var
+     */
+    private $zip_code;
+
+    /**
+     * @var string
+     */
+    private $comment;
+
+    /**
+     * @var string
+     */
     private $property_type;
 
     /**
@@ -320,6 +336,54 @@ class ScorimmoLead
         $this->status = $status;
     }
 
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getZipCode()
+    {
+        return $this->zip_code;
+    }
+
+    /**
+     * @param mixed $zip_code
+     */
+    public function setZipCode($zip_code)
+    {
+        $this->zip_code = $zip_code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+    
     /**
      * Mandatory field for Scorimmo
      * @return bool
