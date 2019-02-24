@@ -26,10 +26,10 @@ try {
     $lead->setPropertyReference('568952');
     $lead->setSellerId(123);
 
-    $data = $scorimmo->addLead($lead, 123);
-
+    //$data = $scorimmo->addLead($lead, 123);
     //$data = $scorimmo->changeUserOfLead(123, 141151, 123);
     //$data = $scorimmo->getUsers(123);
+    $data = $scorimmo->searchLeadsWithEmail('john@doe.com', 123);
 
     print_r($data);
 } catch (Exception $e) {

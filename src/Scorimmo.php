@@ -104,13 +104,13 @@ class Scorimmo extends ScorimmoConfig
     }
 
     /**
-     * Filter leads with status and user
+     * Filter leads by status and user
      * @param $status string ex : 'RDV à confirmer|RDV confirmé|Affecté'
      * @param $user_id int
      * @return array
      * @throws \Exception
      */
-    public function searchLeadsWithStatus($status, $user_id)
+    public function searchLeadsByStatus($status, $user_id)
     {
         $query = http_build_query([
             'search[status]'    => urlencode($status),
@@ -127,6 +127,37 @@ class Scorimmo extends ScorimmoConfig
         }
 
         return $this->getResponse($response);
+    }
+
+    /**
+     * search lead by email and user
+     * @param $email string
+     * @param $user_id int
+     * @return array
+     * @throws \Exception
+     */
+    public function searchLeadsByEmail($email, $user_id)
+    {
+        $query = http_build_query([
+            'search[email]'    => urlencode($email),
+            'search[seller_id]' => $user_id
+        ]);
+
+        try {
+            $response = $this->client()->request('GET', self::LEAD_URL, [
+                'headers' => $this->headers,
+                'query'   => $query,
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception('Error get users : ' . $e->getMessage());
+        }
+        $lead = $this->getResponse($response);
+
+        if(isset($lead[0]->email) && $lead[0]->email === $email) {
+            return $lead[0];
+        }
+
+        return null;
     }
 
     /**
@@ -190,7 +221,6 @@ class Scorimmo extends ScorimmoConfig
      */
     private function getToken($username, $password)
     {
-        $token = '';
         try {
             $response = $this->client()->request('POST', self::AUTHENTIFICATION_URL,
                 [
@@ -226,7 +256,6 @@ class Scorimmo extends ScorimmoConfig
      */
     private function getResponse($response)
     {
-        $results = [];
         if ($response->getStatusCode() === 200 || $response->getStatusCode() === 201) {
             $body = json_decode($response->getBody());
 
