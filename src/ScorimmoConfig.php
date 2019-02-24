@@ -9,4 +9,5 @@ abstract class ScorimmoConfig
     const LEAD_POST_URL        = self::URL . 'stores/%d/leads';
     const LEAD_UPDATE_URL      = self::URL . 'stores/%d/leads/%d';
     const USER_URL             = self::URL . 'stores/%d/users';
+    const APPOINTMENT_URL      = self::URL . 'stores/%d/leads/%d/appointments';
 }

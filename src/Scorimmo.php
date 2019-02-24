@@ -104,6 +104,27 @@ class Scorimmo extends ScorimmoConfig
     }
 
     /**
+     * get appointments for a lead
+     * @param $store_id int
+     * @param $lead_id int
+     * @return array of appointments
+     * @throws \Exception
+     */
+    public function searchLeadAppointments($store_id, $lead_id)
+    {
+        $url = sprintf(self::APPOINTMENT_URL, $store_id, $lead_id);
+        try {
+            $response = $this->client()->request('GET', $url, [
+                'headers' => $this->headers,
+            ]);
+        } catch (GuzzleException $e) {
+            throw new \Exception('Error get users : ' . $e->getMessage());
+        }
+
+        return $this->getResponse($response);
+    }
+
+    /**
      * Filter leads by status and user
      * @param $status string ex : 'RDV à confirmer|RDV confirmé|Affecté'
      * @param $user_id int
@@ -139,7 +160,7 @@ class Scorimmo extends ScorimmoConfig
     public function searchLeadsByEmail($email, $user_id)
     {
         $query = http_build_query([
-            'search[email]'    => urlencode($email),
+            'search[email]'     => urlencode($email),
             'search[seller_id]' => $user_id
         ]);
 
@@ -153,7 +174,7 @@ class Scorimmo extends ScorimmoConfig
         }
         $lead = $this->getResponse($response);
 
-        if(isset($lead[0]->email) && $lead[0]->email === $email) {
+        if (isset($lead[0]->email) && $lead[0]->email === $email) {
             return $lead[0];
         }
 
