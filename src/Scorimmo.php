@@ -60,7 +60,7 @@ class Scorimmo extends ScorimmoConfig
                         'last_name'               => $lead->getLastName(),
                         'phone'                   => $lead->getPhone(),
                         'email'                   => $lead->getEmail(),
-                        'address_first_line'      => $lead->getPropertyAddressLine1(),
+                        'address_first_line'      => $lead->getAddressFirstLine(),
                         'city'                    => $lead->getCity(),
                         'zip_code'                => $lead->getZipCode(),
                         'comment'                 => $lead->getComment(),
