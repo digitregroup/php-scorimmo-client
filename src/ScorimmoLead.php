@@ -25,6 +25,11 @@ class ScorimmoLead
     /**
      * @var string
      */
+    private $address_first_line;
+
+    /**
+     * @var string
+     */
     private $comment;
 
     /**
@@ -239,6 +244,24 @@ class ScorimmoLead
     {
         $this->property_city = $property_city;
     }
+
+    /**
+     * @return string
+     */
+    public function getAddressFirstLine()
+    {
+        return $this->address_first_line;
+    }
+
+    /**
+     * @param string $address_first_line
+     */
+    public function setAddressFirstLine($address_first_line)
+    {
+        $this->address_first_line = $address_first_line;
+    }
+
+
 
     /**
      * @return string
