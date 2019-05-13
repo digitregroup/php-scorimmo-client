@@ -2,7 +2,7 @@
 
 abstract class ScorimmoConfig
 {
-    const URL                  = 'https://pro.scorimmo.com/doc/api/';
+    const URL                  = 'https://pro.scorimmo.com/api/';
     const AUTHENTIFICATION_URL = self::URL . 'login_check';
     const STORES_URL           = self::URL . 'stores';
     const LEAD_URL             = self::URL . 'leads';
