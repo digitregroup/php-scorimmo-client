@@ -49,7 +49,7 @@ class Scorimmo extends ScorimmoConfig
     {
         try {
             if (!$lead->isValid()) {
-                throw new \Exception('Lead not add, error lead validation');
+                throw new \Exception('Lead not add, error lead validation: '. print_r($lead, true));
             }
             $url      = sprintf(self::LEAD_POST_URL, $store_id);
             $response = $this->client()->request('POST', $url,
